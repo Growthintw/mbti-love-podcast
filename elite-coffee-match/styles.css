@@ -301,6 +301,11 @@ h3 {
   background: rgba(255, 255, 255, .08);
 }
 
+.stats .stat-focus {
+  background: rgba(240, 182, 111, .16);
+  border-color: rgba(240, 182, 111, .42);
+}
+
 .stats b {
   display: block;
   margin-bottom: 12px;
@@ -319,7 +324,7 @@ h3 {
 }
 
 .steps {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .scratch-section {
