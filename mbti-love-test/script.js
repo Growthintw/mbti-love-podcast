@@ -154,6 +154,7 @@ const quizTitle = document.querySelector("#quizTitle");
 const typeCode = document.querySelector("#typeCode");
 const typeName = document.querySelector("#typeName");
 const typeSummary = document.querySelector("#typeSummary");
+const attachmentResult = document.querySelector("#attachmentResult");
 const scoreGrid = document.querySelector("#scoreGrid");
 const stageResult = document.querySelector("#stageResult");
 const resetButton = document.querySelector("#resetButton");
@@ -163,6 +164,57 @@ let currentMode = "simple";
 let answers = [];
 
 const midpoint = 5.5;
+
+const getAttachmentInsight = (letters) => {
+  const averageDistance = answers.reduce((sum, value) => sum + Math.abs(value - midpoint), 0) / answers.length;
+  const [energy, signal, decision, rhythm] = letters;
+
+  if (averageDistance <= 1.15) {
+    return {
+      name: "安全型互動傾向",
+      text: "你的答案多半落在中間區間，代表你在關係裡比較能同時保留自己，也能靠近對方。你不一定急著確認，也不會一有壓力就完全抽離。",
+      reminder: "提醒：安全不是沒有焦慮，而是焦慮出現時，仍然能溝通、修復、回到關係裡。"
+    };
+  }
+
+  if (energy === "I" && decision === "F") {
+    return {
+      name: "焦慮逃避混合傾向",
+      text: "你可能很想靠近，但又會先保護自己。當對方靠太近時你會緊張，對方太遠時你又容易不安，所以關係裡可能出現忽冷忽熱的拉扯。",
+      reminder: "提醒：你真正需要的不是立刻確定答案，而是讓對方知道你的靠近速度與安全感來源。"
+    };
+  }
+
+  if ((decision === "F" && energy === "E") || (decision === "F" && rhythm === "J")) {
+    return {
+      name: "焦慮型依附傾向",
+      text: "你在感情裡很在意回應、承諾與被選擇的感覺。對方訊息變少、態度不明確，容易讓你開始腦補或想更快確認關係。",
+      reminder: "提醒：你的敏感是關係雷達，但需要搭配事實核對，才不會把不確定全部解讀成不被愛。"
+    };
+  }
+
+  if ((energy === "I" && decision === "T") || (energy === "I" && rhythm === "P")) {
+    return {
+      name: "逃避型依附傾向",
+      text: "你不一定是不需要關係，而是壓力一大時會想退回自己的空間。當對方要求解釋、確認或承諾太快，你可能會先冷下來或拉開距離。",
+      reminder: "提醒：空間可以保護你，但若沒有說明，對方容易把你的退開理解成拒絕。"
+    };
+  }
+
+  if (signal === "N" && rhythm === "P") {
+    return {
+      name: "探索型依附傾向",
+      text: "你容易被可能性、想像與互動新鮮感吸引。關係裡你需要自由與成長感，如果太快被固定，可能會覺得熱度下降。",
+      reminder: "提醒：探索感很迷人，但穩定關係也需要把喜歡落實成可被對方感受到的行動。"
+    };
+  }
+
+  return {
+    name: "穩定自主型傾向",
+    text: "你在關係裡比較重視現實判斷、互相尊重與穩定推進。你不太喜歡被情緒推著走，也希望關係能有成熟的節奏。",
+    reminder: "提醒：理性可以降低錯配，但也要讓對方感覺到你不是只在評估，而是真的有投入。"
+  };
+};
 
 const renderQuestions = () => {
   const mode = modes[currentMode];
@@ -222,9 +274,15 @@ const calculateResult = () => {
   });
 
   const code = letters.join("");
+  const attachment = getAttachmentInsight(letters);
   typeCode.textContent = code;
   typeName.textContent = letters.map((letter) => typeNames[letter]).join("、");
   typeSummary.textContent = `你的感情互動傾向比較像「${code}」。這不是正式 MBTI 診斷，而是一個用來觀察感情互動的快速版本：你怎麼被吸引、怎麼曖昧、怎麼確認關係，以及怎麼磨合。`;
+  attachmentResult.innerHTML = `
+    <b>依附風格提示｜${attachment.name}</b>
+    <p>${attachment.text}</p>
+    <small>${attachment.reminder}</small>
+  `;
 
   scoreGrid.innerHTML = Object.entries(totals).map(([axis, total]) => {
     const percent = Math.round((Math.max(total.left, total.right) / (total.count * 4.5 || 1)) * 100);
