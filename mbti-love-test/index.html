@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MBTI 感情互動測驗｜吸引、曖昧、交往、磨合</title>
+  <meta name="description" content="用 4 題簡單版或 8 題複雜版，快速看見你在感情中的互動傾向：吸引、曖昧、交往、磨合。">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../">MBTI Love Test</a>
+    <span>感情互動傾向</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Relationship MBTI</p>
+      <h1>你在感情裡，<br>是怎麼靠近一個人的？</h1>
+      <p class="lead">從吸引、曖昧、交往到磨合，用 1-10 分在兩個方向之間選擇，快速看見自己的感情互動傾向。</p>
+      <div class="mode-tabs" aria-label="選擇測驗版本">
+        <button class="mode-tab is-active" type="button" data-mode="simple">4 題簡單版</button>
+        <button class="mode-tab" type="button" data-mode="deep">8 題複雜版</button>
+      </div>
+    </section>
+
+    <section class="stage-strip" aria-label="感情階段">
+      <article>
+        <span>01</span>
+        <b>吸引</b>
+        <p>你如何讓對方感覺到你。</p>
+      </article>
+      <article>
+        <span>02</span>
+        <b>曖昧</b>
+        <p>你如何理解訊號與距離。</p>
+      </article>
+      <article>
+        <span>03</span>
+        <b>交往</b>
+        <p>你如何確認喜歡與合適。</p>
+      </article>
+      <article>
+        <span>04</span>
+        <b>磨合</b>
+        <p>你如何處理差異與節奏。</p>
+      </article>
+    </section>
+
+    <section class="quiz-card">
+      <div class="quiz-heading">
+        <div>
+          <p class="eyebrow" id="modeLabel">Simple test</p>
+          <h2 id="quizTitle">4 題簡單版</h2>
+        </div>
+        <button class="secondary" type="button" id="resetButton">重填</button>
+      </div>
+      <div id="questions" class="questions"></div>
+    </section>
+
+    <section class="result-card" id="result" aria-live="polite">
+      <p class="eyebrow">Your relationship type</p>
+      <div class="result-main">
+        <div>
+          <h2 id="typeCode">ENFJ</h2>
+          <p id="typeName">正在計算你的互動傾向</p>
+        </div>
+        <div class="score-grid" id="scoreGrid"></div>
+      </div>
+      <p id="typeSummary" class="summary"></p>
+      <div class="stage-result" id="stageResult"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
