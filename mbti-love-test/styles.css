@@ -304,6 +304,30 @@ input[type="range"] {
   font-size: 18px;
 }
 
+.attachment-result {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 18px;
+  padding: 18px;
+  border: 1px solid rgba(217, 111, 138, .3);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(247, 238, 247, .92), rgba(255, 255, 255, .92));
+}
+
+.attachment-result b {
+  color: var(--rose);
+  font-size: 18px;
+}
+
+.attachment-result p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.attachment-result small {
+  color: var(--muted);
+}
+
 .stage-result {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
