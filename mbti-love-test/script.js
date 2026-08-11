@@ -206,6 +206,181 @@ const modes = {
         right: { letter: "I", label: "保留空間、降低刺激、慢慢回來" }
       }
     ]
+  },
+  lifestyle: {
+    label: "Lifestyle test",
+    title: "24 題原始人格版｜生活方式面",
+    summary: "這個版本不從感情事件出發，而是用日常生活方式觀察你的原始人格傾向：你怎麼補能量、怎麼接收資訊、怎麼做決定，以及怎麼安排生活。",
+    questions: [
+      {
+        stage: "能量",
+        axis: "EI",
+        prompt: "休假一整天後，你通常是因為見到人而恢復精神，還是因為獨處而恢復精神？",
+        left: { letter: "E", label: "跟人互動後比較有電" },
+        right: { letter: "I", label: "獨處安靜後比較有電" }
+      },
+      {
+        stage: "能量",
+        axis: "EI",
+        prompt: "到一個新場合時，你比較常自然找人聊天，還是先觀察現場氣氛？",
+        left: { letter: "E", label: "先開口、先建立互動" },
+        right: { letter: "I", label: "先觀察、熟了再加入" }
+      },
+      {
+        stage: "能量",
+        axis: "EI",
+        prompt: "工作或生活卡住時，你比較常邊講邊想清楚，還是自己想完再說？",
+        left: { letter: "E", label: "講出來才會慢慢清楚" },
+        right: { letter: "I", label: "先在腦中整理比較安心" }
+      },
+      {
+        stage: "能量",
+        axis: "EI",
+        prompt: "連續社交幾天後，你比較像越來越活，還是需要把自己收回來？",
+        left: { letter: "E", label: "越互動越容易進入狀態" },
+        right: { letter: "I", label: "需要空白時間恢復自己" }
+      },
+      {
+        stage: "能量",
+        axis: "EI",
+        prompt: "朋友臨時約你出門，你比較容易被氣氛帶動答應，還是先衡量自己有沒有餘裕？",
+        left: { letter: "E", label: "有局就容易被點燃" },
+        right: { letter: "I", label: "先看自己還有沒有能量" }
+      },
+      {
+        stage: "能量",
+        axis: "EI",
+        prompt: "你分享生活近況時，比較常直接講很多細節，還是只講給少數熟的人聽？",
+        left: { letter: "E", label: "分享會讓我更有連結感" },
+        right: { letter: "I", label: "只想對信任的人慢慢說" }
+      },
+      {
+        stage: "資訊",
+        axis: "SN",
+        prompt: "學一個新東西時，你比較需要明確步驟範例，還是先理解大方向與原理？",
+        left: { letter: "S", label: "先有範例和步驟才好上手" },
+        right: { letter: "N", label: "先懂概念和可能性才有感" }
+      },
+      {
+        stage: "資訊",
+        axis: "SN",
+        prompt: "你回想一段經驗時，腦中比較常浮現具體畫面細節，還是那件事帶給你的意義？",
+        left: { letter: "S", label: "時間、場景、動作、細節" },
+        right: { letter: "N", label: "脈絡、象徵、背後意義" }
+      },
+      {
+        stage: "資訊",
+        axis: "SN",
+        prompt: "逛街或選東西時，你比較常看實用性與規格，還是想像它會帶來什麼生活感？",
+        left: { letter: "S", label: "規格、價格、用途要清楚" },
+        right: { letter: "N", label: "風格、感覺、想像空間更重要" }
+      },
+      {
+        stage: "資訊",
+        axis: "SN",
+        prompt: "聽別人講故事時，你比較容易注意事情有沒有講清楚，還是注意背後可能代表什麼？",
+        left: { letter: "S", label: "事實順序和細節要對" },
+        right: { letter: "N", label: "會聯想到更大的模式" }
+      },
+      {
+        stage: "資訊",
+        axis: "SN",
+        prompt: "做計畫前，你比較常先查資料和可用資源，還是先想一個可能的方向？",
+        left: { letter: "S", label: "先看現有條件與資料" },
+        right: { letter: "N", label: "先抓方向與可能路徑" }
+      },
+      {
+        stage: "資訊",
+        axis: "SN",
+        prompt: "你對一個地方留下印象，通常是它的服務、動線、食物等細節，還是它整體給你的氛圍？",
+        left: { letter: "S", label: "具體體驗決定印象" },
+        right: { letter: "N", label: "整體氛圍和故事感決定印象" }
+      },
+      {
+        stage: "判斷",
+        axis: "TF",
+        prompt: "朋友找你討論問題時，你比較常先幫他分析解法，還是先接住他的感受？",
+        left: { letter: "T", label: "先拆問題，看怎麼解" },
+        right: { letter: "F", label: "先理解他為什麼難受" }
+      },
+      {
+        stage: "判斷",
+        axis: "TF",
+        prompt: "要拒絕別人時，你比較在意理由是否合理，還是對方會不會受傷？",
+        left: { letter: "T", label: "理由清楚就比較能拒絕" },
+        right: { letter: "F", label: "會顧慮對方感受和關係" }
+      },
+      {
+        stage: "判斷",
+        axis: "TF",
+        prompt: "團隊意見不同時，你比較常回到標準與效率，還是回到大家能不能接受？",
+        left: { letter: "T", label: "標準、效率、結果要先清楚" },
+        right: { letter: "F", label: "感受、氣氛、共識也很重要" }
+      },
+      {
+        stage: "判斷",
+        axis: "TF",
+        prompt: "買一個重要東西前，你比較常用優缺點比較表決定，還是看自己真正喜不喜歡？",
+        left: { letter: "T", label: "用條件比較後比較安心" },
+        right: { letter: "F", label: "心裡有沒有喜歡很關鍵" }
+      },
+      {
+        stage: "判斷",
+        axis: "TF",
+        prompt: "別人做錯事時，你比較快看到問題責任，還是先想他是不是有難處？",
+        left: { letter: "T", label: "先看問題在哪、誰該負責" },
+        right: { letter: "F", label: "先想情境、動機和難處" }
+      },
+      {
+        stage: "判斷",
+        axis: "TF",
+        prompt: "你做人生選擇時，比較常問自己哪個選項最合理，還是哪個選項讓你更像自己？",
+        left: { letter: "T", label: "合理、穩定、可執行" },
+        right: { letter: "F", label: "有感、真實、符合自己" }
+      },
+      {
+        stage: "節奏",
+        axis: "JP",
+        prompt: "旅行前你比較常把行程安排清楚，還是只抓幾個點到時候再看？",
+        left: { letter: "J", label: "先訂好時間、路線、備案" },
+        right: { letter: "P", label: "保留彈性，現場看心情" }
+      },
+      {
+        stage: "節奏",
+        axis: "JP",
+        prompt: "房間或桌面變亂時，你比較常定期整理，還是等真的受不了再一次處理？",
+        left: { letter: "J", label: "定期整理比較舒服" },
+        right: { letter: "P", label: "累積到一定程度再整理" }
+      },
+      {
+        stage: "節奏",
+        axis: "JP",
+        prompt: "面對截止日期，你比較常提早分段完成，還是靠最後一段壓力衝刺？",
+        left: { letter: "J", label: "提早排進度，分段完成" },
+        right: { letter: "P", label: "接近 deadline 反而更有火力" }
+      },
+      {
+        stage: "節奏",
+        axis: "JP",
+        prompt: "生活中突然出現變動時，你比較容易想先重排計畫，還是順著變化看看？",
+        left: { letter: "J", label: "先重排，恢復掌控感" },
+        right: { letter: "P", label: "先順一下，看會發生什麼" }
+      },
+      {
+        stage: "節奏",
+        axis: "JP",
+        prompt: "一週開始前，你比較常先列出要完成的事，還是每天依狀態決定優先順序？",
+        left: { letter: "J", label: "先列清單與優先順序" },
+        right: { letter: "P", label: "每天看狀態動態調整" }
+      },
+      {
+        stage: "節奏",
+        axis: "JP",
+        prompt: "和別人合作時，你比較需要明確規則與分工，還是只要方向對就可以彈性協作？",
+        left: { letter: "J", label: "分工、規則、時間要清楚" },
+        right: { letter: "P", label: "方向對即可，過程可彈性調整" }
+      }
+    ]
   }
 };
 
@@ -389,7 +564,7 @@ const calculateResult = () => {
   const attachment = getAttachmentInsight(letters);
   typeCode.textContent = code;
   typeName.textContent = letters.map((letter) => typeNames[letter]).join("、");
-  typeSummary.textContent = `你的感情互動傾向比較像「${code}」。這不是正式 MBTI 診斷，而是一個用來觀察感情互動的快速版本：你怎麼被吸引、怎麼曖昧、怎麼確認關係，以及怎麼磨合。`;
+  typeSummary.textContent = mode.summary || `你的感情互動傾向比較像「${code}」。這不是正式 MBTI 診斷，而是一個用來觀察感情互動的快速版本：你怎麼被吸引、怎麼曖昧、怎麼確認關係，以及怎麼磨合。`;
   attachmentResult.innerHTML = `
     <b>依附風格提示｜${attachment.name}</b>
     <p>${attachment.text}</p>
