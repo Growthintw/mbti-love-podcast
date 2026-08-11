@@ -34,64 +34,176 @@ const modes = {
     ]
   },
   deep: {
-    label: "Deep test",
-    title: "8 題複雜版",
+    label: "Practice test",
+    title: "24 題磨合實戰版",
     questions: [
       {
         stage: "吸引",
         axis: "EI",
-        prompt: "你會先用互動創造火花，還是先觀察對方是否值得靠近？",
-        left: { letter: "E", label: "互動越多越有感" },
-        right: { letter: "I", label: "觀察越久越安心" }
+        prompt: "回想你上一次對人有好感時，你比較常主動製造互動，還是先觀察對方的反應？",
+        left: { letter: "E", label: "主動開話題、約見面、丟球" },
+        right: { letter: "I", label: "先觀察細節，確認安全再靠近" }
       },
       {
         stage: "吸引",
         axis: "SN",
-        prompt: "吸引你的，通常是明確條件，還是某種說不出的氣質？",
-        left: { letter: "S", label: "具體條件與生活質感" },
-        right: { letter: "N", label: "氣場、潛力與故事感" }
+        prompt: "過去真正吸引你的對象，通常是有具體條件打中你，還是相處時有一種說不出的感覺？",
+        left: { letter: "S", label: "外型、能力、生活方式很明確" },
+        right: { letter: "N", label: "氣場、故事感、聊天延伸性很強" }
+      },
+      {
+        stage: "吸引",
+        axis: "TF",
+        prompt: "你曾經被吸引後，會先確認對方現實上適不適合，還是先順著喜歡的感覺往前走？",
+        left: { letter: "T", label: "先看條件、狀態、可行性" },
+        right: { letter: "F", label: "先看心動、溫度、被理解感" }
+      },
+      {
+        stage: "吸引",
+        axis: "JP",
+        prompt: "有好感時，你比較常把下一步安排清楚，還是讓互動自然發展？",
+        left: { letter: "J", label: "會想安排下一次見面或確認節奏" },
+        right: { letter: "P", label: "先不要太定義，讓感覺流動" }
+      },
+      {
+        stage: "吸引",
+        axis: "EI",
+        prompt: "如果對方讓你有興趣，你過去比較常直接表現熱度，還是用比較不明顯的方式測試？",
+        left: { letter: "E", label: "熱度會被看見，互動會變多" },
+        right: { letter: "I", label: "會暗中觀察，不想太快暴露" }
+      },
+      {
+        stage: "吸引",
+        axis: "SN",
+        prompt: "你實際喜歡過的人，讓你留下印象的是穩定可見的行動，還是你們之間有很多想像空間？",
+        left: { letter: "S", label: "做了什麼、是否穩定最有感" },
+        right: { letter: "N", label: "聊出可能性與未來感最有感" }
       },
       {
         stage: "曖昧",
         axis: "EI",
-        prompt: "曖昧時，你偏向把感覺講出來，還是讓對方慢慢感覺？",
-        left: { letter: "E", label: "會丟話題與暗示" },
-        right: { letter: "I", label: "比較含蓄，等對方靠近" }
+        prompt: "曖昧時如果你想推進關係，過去你比較常主動丟訊號，還是等對方先跨一步？",
+        left: { letter: "E", label: "會主動丟訊號，看對方接不接" },
+        right: { letter: "I", label: "會等對方明確一點才回應" }
+      },
+      {
+        stage: "曖昧",
+        axis: "SN",
+        prompt: "曖昧中讓你安心的，通常是對方有具體行動，還是你感覺到彼此有默契？",
+        left: { letter: "S", label: "固定聯絡、約見面、說到做到" },
+        right: { letter: "N", label: "默契、共鳴、懂你的暗示" }
       },
       {
         stage: "曖昧",
         axis: "TF",
-        prompt: "你在曖昧中比較怕不合適，還是怕對方不夠喜歡？",
-        left: { letter: "T", label: "怕浪費時間與錯配" },
-        right: { letter: "F", label: "怕感受沒有被接住" }
+        prompt: "曖昧拖久時，你過去比較常開始評估值不值得，還是先在意對方到底喜不喜歡你？",
+        left: { letter: "T", label: "評估時間成本與關係可行性" },
+        right: { letter: "F", label: "在意自己有沒有被選擇" }
+      },
+      {
+        stage: "曖昧",
+        axis: "JP",
+        prompt: "曖昧沒有明確進展時，你過去比較想把關係講清楚，還是再給一點時間觀察？",
+        left: { letter: "J", label: "想確認關係，不想一直模糊" },
+        right: { letter: "P", label: "可以再觀察，不急著定義" }
+      },
+      {
+        stage: "曖昧",
+        axis: "TF",
+        prompt: "當對方忽冷忽熱時，你比較常拿事實核對對方行為，還是先被情緒影響？",
+        left: { letter: "T", label: "看頻率、行動、前後一致性" },
+        right: { letter: "F", label: "先感到不安、委屈或失落" }
+      },
+      {
+        stage: "曖昧",
+        axis: "JP",
+        prompt: "你有曖昧失敗的經驗時，原因比較常是節奏沒有被確認，還是太快被框住後失去自然感？",
+        left: { letter: "J", label: "卡在沒有承諾與下一步" },
+        right: { letter: "P", label: "卡在壓力太快、太像被規定" }
+      },
+      {
+        stage: "交往",
+        axis: "EI",
+        prompt: "正式交往後，你過去比較常把問題拿出來聊，還是先自己消化一段時間？",
+        left: { letter: "E", label: "會講出來，希望一起面對" },
+        right: { letter: "I", label: "會先整理，不想立刻碰撞" }
       },
       {
         stage: "交往",
         axis: "SN",
-        prompt: "交往後，你比較重視日常落地，還是一起想像未來？",
-        left: { letter: "S", label: "日常照顧與實際行動" },
-        right: { letter: "N", label: "共同願景與成長想像" }
+        prompt: "交往後最讓你覺得被愛的經驗，是對方把小事做好，還是對方懂你的深層想法？",
+        left: { letter: "S", label: "照顧日常、記得細節、說到做到" },
+        right: { letter: "N", label: "懂你的脈絡、願景與內在世界" }
+      },
+      {
+        stage: "交往",
+        axis: "TF",
+        prompt: "你曾經決定要不要繼續一段關係時，比較依據相處是否合理，還是自己是否還有愛？",
+        left: { letter: "T", label: "看問題能不能解、合不合適" },
+        right: { letter: "F", label: "看感情還在不在、心有沒有靠近" }
       },
       {
         stage: "交往",
         axis: "JP",
-        prompt: "進入關係後，你希望節奏更明確，還是保持自然流動？",
-        left: { letter: "J", label: "關係要有方向與安排" },
-        right: { letter: "P", label: "保留空間才不窒息" }
+        prompt: "關係穩定後，你比較容易因為沒有共同規劃而焦慮，還是因為規劃太滿而想逃？",
+        left: { letter: "J", label: "沒有方向會不安" },
+        right: { letter: "P", label: "太固定會窒息" }
+      },
+      {
+        stage: "交往",
+        axis: "SN",
+        prompt: "你過去最常因為哪種落差失望：對方沒有做到說過的事，還是你們想像的未來不一致？",
+        left: { letter: "S", label: "承諾沒有落實到行動" },
+        right: { letter: "N", label: "未來想像與成長方向不同" }
+      },
+      {
+        stage: "交往",
+        axis: "TF",
+        prompt: "發現彼此不合時，你比較常先找解法與分工，還是先確認彼此還願不願意靠近？",
+        left: { letter: "T", label: "先拆問題、談方法、看能不能修" },
+        right: { letter: "F", label: "先確認心意、情緒與被在乎感" }
+      },
+      {
+        stage: "磨合",
+        axis: "EI",
+        prompt: "吵架後你過去比較常主動開口修復，還是需要先安靜一段時間才回來談？",
+        left: { letter: "E", label: "會主動破冰，希望快點修復" },
+        right: { letter: "I", label: "需要冷靜，整理完才有力氣談" }
+      },
+      {
+        stage: "磨合",
+        axis: "SN",
+        prompt: "你們磨合生活習慣時，真正有用的是具體做法改變，還是重新理解彼此為什麼這樣做？",
+        left: { letter: "S", label: "訂做法、分工、流程最有效" },
+        right: { letter: "N", label: "理解背後需求與脈絡最有效" }
       },
       {
         stage: "磨合",
         axis: "TF",
-        prompt: "吵架或卡住時，你比較想先釐清問題，還是先修復情緒？",
-        left: { letter: "T", label: "先把問題講清楚" },
-        right: { letter: "F", label: "先讓彼此感覺被理解" }
+        prompt: "遇到重複吵的問題時，你比較常要求對方改行為，還是希望對方先理解你的感受？",
+        left: { letter: "T", label: "行為要改，不然問題會重演" },
+        right: { letter: "F", label: "感受要被懂，才有力氣調整" }
       },
       {
         stage: "磨合",
         axis: "JP",
-        prompt: "磨合成功對你來說，比較像建立規則，還是找到彈性？",
-        left: { letter: "J", label: "形成共識與界線" },
-        right: { letter: "P", label: "找到彼此可接受的彈性" }
+        prompt: "最費力的一次磨合裡，最後比較像靠明確規則成功，還是靠彼此放寬標準成功？",
+        left: { letter: "J", label: "靠規則、界線、固定做法撐過去" },
+        right: { letter: "P", label: "靠彈性、退一步、重新協調撐過去" }
+      },
+      {
+        stage: "磨合",
+        axis: "JP",
+        prompt: "如果磨合沒有成功，你回頭看比較常是因為一直沒有定下共識，還是因為共識太硬、沒辦法生活？",
+        left: { letter: "J", label: "沒有共識，問題一直重複" },
+        right: { letter: "P", label: "共識太硬，彼此都不像自己" }
+      },
+      {
+        stage: "磨合",
+        axis: "EI",
+        prompt: "關係低潮時，你過去比較常用更多互動把溫度拉回來，還是先保留距離讓彼此恢復？",
+        left: { letter: "E", label: "增加互動、約會、把話聊開" },
+        right: { letter: "I", label: "保留空間、降低刺激、慢慢回來" }
       }
     ]
   }
