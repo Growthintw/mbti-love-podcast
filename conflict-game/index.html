@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#171321">
+  <title>我們正在吵同一場架嗎？｜雙人衝突預演</title>
+  <meta name="description" content="小吵、中吵、大吵的雙人關係互動遊戲，找出你們的衝突溫度差、小劇場與修復語言。">
+  <link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+  <header class="topbar"><a href="../" class="brand">MBTI 敲敲門</a><span>雙人關係實驗室</span></header>
+  <main id="app">
+    <section class="screen active" id="welcome">
+      <div class="hero-mark"><span></span><span></span><span></span></div>
+      <p class="eyebrow">RELATIONSHIP CONFLICT LAB</p>
+      <h1>我們正在吵<br><em>同一場架嗎？</em></h1>
+      <p class="lead">有些人覺得只是小事，另一個人卻已經開始懷疑這段關係。用 9 個情境，看見你們如何受傷，又如何回來。</p>
+      <div class="levels"><div><b>小吵</b><small>日常摩擦</small></div><div><b>中吵</b><small>重複模式</small></div><div><b>大吵</b><small>信任底線</small></div></div>
+      <div class="notice"><b>遊戲方式</b><p>兩人使用同一支手機輪流作答，答案會先保密。全部完成後再一起揭曉，約 12–15 分鐘。</p></div>
+      <label class="name-field"><span>玩家一怎麼稱呼？</span><input id="p1Name" maxlength="10" placeholder="例如：Dustin"></label>
+      <label class="name-field"><span>玩家二怎麼稱呼？</span><input id="p2Name" maxlength="10" placeholder="例如：小雨"></label>
+      <button class="primary" id="startBtn">開始衝突預演 <span>→</span></button>
+      <p class="fine">這不是相容度診斷，也沒有標準答案。請依第一反應誠實作答。</p>
+    </section>
+
+    <section class="screen handoff" id="handoff">
+      <div class="lock">✦</div><p class="eyebrow" id="handoffStep">PLAYER 1</p>
+      <h2>請把手機交給<br><em id="handoffName">玩家一</em></h2>
+      <p id="handoffText">接下來是你的秘密作答時間，另一位請先不要偷看。</p>
+      <button class="primary" id="readyBtn">我準備好了</button>
+    </section>
+
+    <section class="screen" id="quiz">
+      <div class="progress-head"><button class="ghost" id="quitBtn">×</button><div><small id="playerLabel">玩家一作答中</small><div class="bar"><i id="progressBar"></i></div></div><b id="progressText">1 / 9</b></div>
+      <article class="scenario-card">
+        <div class="level-tag" id="levelTag">小吵 · 日常摩擦</div><span class="scenario-no" id="scenarioNo">01</span>
+        <h2 id="scenarioTitle"></h2><p id="scenarioText"></p>
+      </article>
+      <div class="question-block"><p class="q-label">01 · 情境投射</p><h3>這個畫面最讓你想到什麼？</h3><div class="options" id="relationOptions"></div></div>
+      <div class="question-block"><p class="q-label">02 · 衝突溫度</p><h3>如果發生在你身上，你會把它放在哪一級？</h3><div class="severity" id="severityOptions"></div></div>
+      <div class="question-block"><p class="q-label">03 · 內心小劇場</p><h3>你腦中最可能先冒出哪句話？</h3><div class="options compact" id="storyOptions"></div></div>
+      <div class="question-block"><p class="q-label">04 · 第一反應</p><h3>你接下來最可能怎麼做？</h3><div class="options compact" id="reactionOptions"></div></div>
+      <div class="question-block"><p class="q-label">05 · 修復語言</p><h3>你最需要對方做哪一件事？</h3><div class="options compact" id="repairOptions"></div></div>
+      <button class="primary sticky" id="nextBtn" disabled>確認這一題 <span>→</span></button>
+    </section>
+
+    <section class="screen" id="results">
+      <p class="eyebrow">YOUR CONFLICT MAP</p><h1>你們不是不在乎，<br><em>只是受傷的翻譯不同。</em></h1>
+      <div class="score-card"><span>衝突溫度差</span><strong id="gapScore">0.0</strong><small>/ 3 級</small><p id="gapText"></p></div>
+      <div class="result-section"><div class="section-title"><span>01</span><h2>九個情境的溫度</h2></div><div id="scenarioResults" class="scenario-results"></div></div>
+      <div class="result-section"><div class="section-title"><span>02</span><h2>你們的衝突本能</h2></div><div class="profile-grid" id="profileResults"></div></div>
+      <div class="result-section"><div class="section-title"><span>03</span><h2>最容易卡住的循環</h2></div><div class="cycle" id="cycleResult"></div></div>
+      <div class="result-section"><div class="section-title"><span>04</span><h2>修復公約</h2></div><div class="covenant" id="covenant"></div></div>
+      <div class="actions"><button class="primary" id="copyBtn">複製結果摘要</button><button class="secondary" id="restartBtn">重新開始</button></div>
+      <a class="back-home" href="../">回到 MBTI 敲敲門</a>
+    </section>
+  </main>
+  <script src="script.js?v=1"></script>
+</body>
+</html>
