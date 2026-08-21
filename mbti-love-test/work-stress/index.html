@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>8 題上班族壓力反應測驗｜MBTI Love Test</title>
+  <meta name="description" content="用 8 題上班族常見壓力情境，測出你的 MBTI 壓力反應傾向：能量、資訊、判斷與節奏。">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .back-link{display:inline-flex;margin-bottom:22px;color:var(--violet);font-weight:900;text-decoration:none}.work-note{max-width:760px;color:var(--muted);font-size:17px}.result-tags{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}.result-tags article{border:1px solid var(--line);border-radius:8px;background:#fff;padding:16px}.result-tags b{display:block;margin-bottom:6px;color:var(--violet)}@media(max-width:760px){.result-tags{grid-template-columns:1fr}.scale-labels{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../">MBTI Love Test</a>
+    <span>上班族壓力反應</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <a class="back-link" href="../">回到全部測驗</a>
+      <p class="eyebrow">Work Stress MBTI</p>
+      <h1>上班壓力來時，<br>你會變成哪一種人？</h1>
+      <p class="lead">用 8 題真實職場情境，觀察你在壓力下怎麼補能量、抓資訊、做判斷，以及恢復掌控感。</p>
+      <p class="work-note">請用 1-10 分選擇比較像你的壓力反應。1 分偏左邊描述，10 分偏右邊描述。</p>
+    </section>
+
+    <section class="quiz-card">
+      <div class="quiz-heading">
+        <div>
+          <p class="eyebrow">Office stress test</p>
+          <h2>8 題上班族壓力反應測驗</h2>
+        </div>
+        <button class="secondary" type="button" id="resetButton">重填</button>
+      </div>
+      <div id="questions" class="questions"></div>
+    </section>
+
+    <section class="result-card" aria-live="polite">
+      <p class="eyebrow">Your stress type</p>
+      <div class="result-main">
+        <div>
+          <h2 id="typeCode">ENFJ</h2>
+          <p id="typeName">正在計算你的職場壓力傾向</p>
+        </div>
+        <div class="score-grid" id="scoreGrid"></div>
+      </div>
+      <p id="typeSummary" class="summary"></p>
+      <div class="result-tags" id="resultTags"></div>
+    </section>
+  </main>
+
+  <script>
+    const questions = [
+      { stage: "能量", axis: "EI", prompt: "上班壓力突然變大時，你比較常找同事或朋友講一講，還是先自己安靜消化？", left: { letter: "E", label: "講出來比較快恢復狀態" }, right: { letter: "I", label: "先安靜整理比較不耗能" } },
+      { stage: "能量", axis: "EI", prompt: "被主管臨時追進度時，你比較常當場溝通確認，還是先回去整理後再回覆？", left: { letter: "E", label: "當場問清楚、快速對齊" }, right: { letter: "I", label: "先整理資訊，再給完整回覆" } },
+      { stage: "資訊", axis: "SN", prompt: "專案混亂時，你比較需要先知道具體任務和 deadline，還是先知道整件事的方向與目的？", left: { letter: "S", label: "任務、時程、交付物要清楚" }, right: { letter: "N", label: "方向、脈絡、目的要先懂" } },
+      { stage: "資訊", axis: "SN", prompt: "同事說『這件事很急』但沒講清楚時，你比較在意他補上細節，還是先推測背後真正問題？", left: { letter: "S", label: "先補事實、數字、責任範圍" }, right: { letter: "N", label: "先判斷背後風險和模式" } },
+      { stage: "判斷", axis: "TF", prompt: "團隊出包時，你第一反應比較像先找原因和解法，還是先穩住大家的情緒和信任？", left: { letter: "T", label: "先拆原因、責任、補救方案" }, right: { letter: "F", label: "先穩住人，避免關係炸掉" } },
+      { stage: "判斷", axis: "TF", prompt: "被同事質疑做法時，你比較容易回到邏輯與標準，還是先在意對方語氣是否尊重？", left: { letter: "T", label: "重點是論點是否成立" }, right: { letter: "F", label: "語氣與尊重會影響我能不能聽" } },
+      { stage: "節奏", axis: "JP", prompt: "事情多到爆炸時，你比較常先重排清單和優先順序，還是邊做邊動態調整？", left: { letter: "J", label: "先排順序，恢復掌控感" }, right: { letter: "P", label: "邊做邊修正，保持彈性" } },
+      { stage: "節奏", axis: "JP", prompt: "主管突然改需求時，你比較焦慮的是計畫被打亂，還是做法被太早限制住？", left: { letter: "J", label: "計畫被打亂會很煩" }, right: { letter: "P", label: "做法被鎖死會很卡" } }
+    ];
+
+    const axisNames = { EI: ["外放釋壓", "內在整理"], SN: ["事實控壓", "脈絡控壓"], TF: ["解法優先", "關係優先"], JP: ["重排掌控", "彈性應變"] };
+    const typeNames = { E: "靠互動釋壓", I: "靠獨處整理", S: "抓具體事實", N: "抓脈絡方向", T: "先拆問題", F: "先穩住人", J: "先排優先順序", P: "邊做邊調整" };
+    const insights = {
+      E: "壓力大時，你比較需要把事情講出來、找人對齊，透過互動把腦中的混亂整理成下一步。",
+      I: "壓力大時，你比較需要先安靜下來，把資訊在腦中整理好，再回到溝通現場。",
+      S: "你在職場壓力下會更想抓具體事實、時程、責任與可執行步驟，模糊訊息會讓你焦躁。",
+      N: "你在職場壓力下會更想先看大方向、問題背後的模式與可能路徑，只處理零碎細節會讓你卡住。",
+      T: "你面對壓力時傾向先拆問題、看責任與效率，情緒可以被理解，但你更需要可執行解法。",
+      F: "你面對壓力時很在意氣氛、信任與被尊重感，若關係張力沒處理好，解法也很難真正推動。",
+      J: "壓力升高時，你需要明確優先順序、時程與分工；越不確定，你越會想把事情排回軌道。",
+      P: "壓力升高時，你需要保留彈性與調整空間；太早被鎖死做法，反而會降低你的反應能力。"
+    };
+    const stageNames = ["能量", "資訊", "判斷", "節奏"];
+    const midpoint = 5.5;
+    let answers = questions.map(() => 5);
+
+    const questionsEl = document.querySelector("#questions");
+    const typeCode = document.querySelector("#typeCode");
+    const typeName = document.querySelector("#typeName");
+    const typeSummary = document.querySelector("#typeSummary");
+    const scoreGrid = document.querySelector("#scoreGrid");
+    const resultTags = document.querySelector("#resultTags");
+
+    const render = () => {
+      answers = questions.map(() => 5);
+      questionsEl.innerHTML = questions.map((question, index) => `
+        <article class="question">
+          <div class="question-top">
+            <div><small>${question.stage}｜${question.axis}</small><strong>${index + 1}. ${question.prompt}</strong></div>
+            <span class="score-pill" id="score-${index}">5</span>
+          </div>
+          <div class="scale-labels">
+            <span><b>1</b> ${question.left.label}</span>
+            <input type="range" min="1" max="10" step="1" value="5" data-index="${index}" aria-label="${question.prompt}">
+            <span><b>10</b> ${question.right.label}</span>
+          </div>
+        </article>
+      `).join("");
+      questionsEl.querySelectorAll("input").forEach((input) => {
+        input.addEventListener("input", (event) => {
+          const index = Number(event.target.dataset.index);
+          answers[index] = Number(event.target.value);
+          document.querySelector(`#score-${index}`).textContent = event.target.value;
+          calculate();
+        });
+      });
+      calculate();
+    };
+
+    const calculate = () => {
+      const totals = { EI: { left: 0, right: 0, count: 0 }, SN: { left: 0, right: 0, count: 0 }, TF: { left: 0, right: 0, count: 0 }, JP: { left: 0, right: 0, count: 0 } };
+      questions.forEach((question, index) => {
+        const value = answers[index];
+        totals[question.axis].left += Math.max(0, midpoint - value);
+        totals[question.axis].right += Math.max(0, value - midpoint);
+        totals[question.axis].count += 1;
+      });
+      const letters = Object.entries(totals).map(([axis, total]) => {
+        const question = questions.find((item) => item.axis === axis);
+        return total.right > total.left ? question.right.letter : question.left.letter;
+      });
+      const code = letters.join("");
+      typeCode.textContent = code;
+      typeName.textContent = letters.map((letter) => typeNames[letter]).join("、");
+      typeSummary.textContent = `你的上班族壓力反應比較像「${code}」。這不是正式 MBTI 診斷，而是用職場壓力情境觀察你在能量、資訊、判斷與節奏上的偏好。`;
+      scoreGrid.innerHTML = Object.entries(totals).map(([axis, total]) => {
+        const percent = Math.round((Math.max(total.left, total.right) / (total.count * 4.5 || 1)) * 100);
+        const side = total.right > total.left ? axisNames[axis][1] : axisNames[axis][0];
+        return `<div class="score-item"><b>${axis}｜${side}</b><span>傾向強度 ${Math.max(1, percent)}%</span></div>`;
+      }).join("");
+      resultTags.innerHTML = letters.map((letter, index) => `<article><b>${stageNames[index]}｜${letter}</b><p>${insights[letter]}</p></article>`).join("");
+    };
+
+    document.querySelector("#resetButton").addEventListener("click", render);
+    render();
+  </script>
+</body>
+</html>
