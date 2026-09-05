@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5eee7">
+  <meta name="description" content="從八個生活問題，看見你真正重視的戀愛感。先回答，再揭曉。">
+  <title>你的戀愛感｜MBTI 敲敲門</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+    :root{--ink:#292724;--muted:#776f68;--paper:#f5eee7;--card:#fffaf5;--coral:#e26f57;--berry:#a3485f;--gold:#d2a85d;--line:rgba(41,39,36,.13);--shadow:0 18px 50px rgba(73,52,43,.12)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;min-height:100vh;background:radial-gradient(circle at 12% 8%,#fff7ee 0,transparent 28%),radial-gradient(circle at 88% 85%,#ead7d6 0,transparent 33%),var(--paper);color:var(--ink);font-family:'Noto Sans TC',sans-serif}
+    button,textarea{font:inherit}
+    button{color:inherit}
+    .shell{width:min(1080px,calc(100% - 36px));margin:auto;padding:28px 0 64px}
+    nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:52px}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:800;letter-spacing:.04em}
+    .mark{display:grid;place-items:center;width:30px;height:30px;border:1.5px solid var(--ink);transform:rotate(45deg)}
+    .mark i{display:block;width:10px;height:10px;background:var(--coral)}
+    nav>a:last-child{color:var(--muted);font-size:14px;text-underline-offset:4px}
+    header{text-align:center;margin:0 auto 34px;max-width:720px}
+    .eyebrow{font-size:12px;font-weight:900;letter-spacing:.24em;color:var(--coral);margin:0 0 12px}
+    h1{margin:0;font-family:'Playfair Display','Noto Sans TC',serif;font-size:clamp(42px,7vw,76px);line-height:1.05;letter-spacing:-.04em}
+    h1 em{font-weight:700;color:var(--berry)}
+    .lead{font-size:clamp(15px,2vw,18px);line-height:1.85;color:var(--muted);margin:20px auto 0}
+    .board{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:min(720px,100%);margin:0 auto}
+    .tile{position:relative;aspect-ratio:1;border:1px solid var(--line);border-radius:18px;background:rgba(255,250,245,.76);box-shadow:0 5px 20px rgba(73,52,43,.04);cursor:pointer;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+    .tile:hover,.tile:focus-visible{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(226,111,87,.52);outline:none}
+    .tile::before{content:attr(data-no);position:absolute;top:14px;left:16px;color:var(--muted);opacity:.48;font:700 11px 'Playfair Display',serif;letter-spacing:.12em}
+    .tile b{font-size:clamp(24px,4vw,36px);letter-spacing:.16em;margin-left:.16em}
+    .tile small{position:absolute;bottom:14px;left:16px;color:var(--muted);font-size:11px;letter-spacing:.08em}
+    .tile.center{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .tile.center::before{color:#fff}
+    .tile.center b{font-family:'Playfair Display','Noto Sans TC',serif;font-style:italic;letter-spacing:.05em;margin:0;color:#fff0e5}
+    .tile.center small{color:#d8cec6}
+    .tile:nth-child(1){border-radius:50% 18px 18px}
+    .tile:nth-child(3){border-radius:18px 50% 18px 18px}
+    .tile:nth-child(7){border-radius:18px 18px 18px 50%}
+    .tile:nth-child(9){border-radius:18px 18px 50%}
+    .tile-inner{height:100%;display:grid;place-items:center}
+    .hint{text-align:center;color:var(--muted);font-size:13px;margin:22px 0 0}
+    .progress{display:flex;justify-content:center;gap:7px;margin-top:18px}
+    .dot{width:7px;height:7px;border-radius:50%;background:rgba(41,39,36,.16);transition:.2s}
+    .dot.done{background:var(--coral);transform:scale(1.2)}
+    dialog{width:min(590px,calc(100% - 28px));padding:0;border:0;border-radius:26px;background:var(--card);color:var(--ink);box-shadow:0 30px 100px rgba(43,29,24,.3);overflow:hidden}
+    dialog::backdrop{background:rgba(35,29,27,.48);backdrop-filter:blur(6px)}
+    .modal{position:relative;padding:34px 34px 30px;min-height:430px;display:flex;flex-direction:column}
+    .close{position:absolute;right:18px;top:16px;border:0;background:transparent;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:23px;color:var(--muted)}
+    .close:hover{background:#efe5dd}
+    .step{color:var(--coral);font-size:11px;font-weight:900;letter-spacing:.2em;margin:4px 0 28px}
+    .question-topic{font-size:14px;color:var(--muted);letter-spacing:.18em;margin:0 0 10px}
+    .question{font-size:clamp(24px,5vw,34px);line-height:1.5;letter-spacing:-.025em;margin:0}
+    textarea{width:100%;min-height:112px;margin:26px 0 14px;padding:16px 18px;resize:vertical;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);line-height:1.65;outline:none}
+    textarea:focus{border-color:var(--coral);box-shadow:0 0 0 3px rgba(226,111,87,.12)}
+    .primary{margin-top:auto;width:100%;border:0;border-radius:14px;padding:15px 20px;background:var(--ink);color:white;font-weight:700;cursor:pointer;transition:.2s}
+    .primary:hover{background:var(--berry)}
+    .primary:disabled{opacity:.35;cursor:not-allowed}
+    .result{display:none;text-align:center;flex:1;align-items:center;justify-content:center;flex-direction:column;padding:8px 0}
+    .result.show{display:flex;animation:rise .55s ease both}
+    .answer-view.hide{display:none}
+    .result-label{font-size:12px;letter-spacing:.22em;color:var(--muted);margin:0 0 14px}
+    .feeling{font-family:'Playfair Display','Noto Sans TC',serif;font-size:clamp(58px,13vw,88px);line-height:1;color:var(--berry);margin:0 0 24px;letter-spacing:.08em;padding-left:.08em}
+    .meaning{font-size:18px;line-height:1.8;max-width:430px;margin:0;color:#514b46}
+    .next{margin-top:28px;border:1px solid var(--ink);border-radius:99px;background:transparent;padding:11px 22px;cursor:pointer;font-weight:700}
+    .next:hover{background:var(--ink);color:#fff}
+    footer{text-align:center;color:var(--muted);font-size:12px;margin-top:52px;line-height:1.8}
+    @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+    @media(max-width:560px){.shell{width:min(100% - 24px,1080px);padding-top:18px}nav{margin-bottom:34px}.brand{font-size:13px}header{margin-bottom:26px}.lead br{display:none}.board{gap:7px}.tile{border-radius:13px}.tile::before{top:9px;left:10px}.tile small{left:10px;bottom:9px;font-size:9px}.tile:nth-child(1){border-radius:42% 13px 13px}.tile:nth-child(3){border-radius:13px 42% 13px 13px}.tile:nth-child(7){border-radius:13px 13px 13px 42%}.tile:nth-child(9){border-radius:13px 13px 42%}.modal{padding:28px 22px 22px;min-height:440px}.question{font-size:25px}.close{right:11px;top:9px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <nav><a class="brand" href="../"><span class="mark"><i></i></span><span>MBTI 敲敲門</span></a><a href="../">回到 Podcast</a></nav>
+    <main>
+      <header>
+        <p class="eyebrow">LOVE, FELT DIFFERENTLY</p>
+        <h1>你想要的愛，<br>是什麼<em>感覺</em>？</h1>
+        <p class="lead">先別急著替愛下定義。選一個詞，回答一段真實經驗，<br>再看看藏在答案裡的戀愛感。</p>
+      </header>
+      <section class="board" id="board" aria-label="戀愛感九宮格"></section>
+      <p class="hint">選一格開始 · 回答後才會揭曉</p>
+      <div class="progress" id="progress" aria-label="完成進度"></div>
+    </main>
+    <footer>沒有標準答案，只有你真實感受到愛的方式。<br>MBTI 情感經驗 Podcast</footer>
+  </div>
+
+  <dialog id="dialog">
+    <div class="modal">
+      <button class="close" id="close" aria-label="關閉">×</button>
+      <div class="answer-view" id="answerView">
+        <p class="step">先回答，再揭曉</p>
+        <p class="question-topic" id="topic"></p>
+        <h2 class="question" id="question"></h2>
+        <textarea id="answer" placeholder="寫下一個真實的瞬間……" aria-label="你的回答"></textarea>
+        <button class="primary" id="reveal" disabled>看見我的戀愛感</button>
+      </div>
+      <div class="result" id="result">
+        <p class="result-label">你的答案裡，藏著一種戀愛感</p>
+        <h2 class="feeling" id="feeling"></h2>
+        <p class="meaning" id="meaning"></p>
+        <button class="next" id="next">換一題，繼續認識自己 →</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    const items = [
+      {topic:'瞬間',feeling:'心動',question:'哪個瞬間，會讓你突然覺得一個人變得很有魅力？',meaning:'你在意那個從普通變得特別的瞬間。愛對你而言，要有吸引，也要讓心跳改變。'},
+      {topic:'細節',feeling:'懂我',question:'別人注意到你什麼小細節，會讓你覺得自己被真正理解？',meaning:'你想要的不只是被聽見，而是有人願意讀懂那些沒有直接說出口的你。'},
+      {topic:'低潮',feeling:'在乎',question:'當你情緒不好時，別人怎麼回應，會讓你感覺自己很重要？',meaning:'你會從一個人如何對待你的情緒，確認自己的感受是否在他心裡有重量。'},
+      {topic:'例外',feeling:'偏愛',question:'別人為你做過什麼「平常不會做的事」，最讓你印象深刻？',meaning:'你在意的不是對方對你很好，而是他願意讓你成為那個特別的例外。'},
+      {topic:'起點',center:true},
+      {topic:'特質',feeling:'欣賞',question:'你身上哪個不容易被發現的特質，最希望有人看見？',meaning:'你期待有人看見的不只是表現與條件，而是那個構成「你是誰」的獨特部分。'},
+      {topic:'脆弱',feeling:'接住',question:'當你表現得不完美時，希望身邊的人怎麼對待你？',meaning:'你渴望在不必堅強、不必表現很好的時候，仍然能夠安全地留在愛裡。'},
+      {topic:'冒險',feeling:'探索',question:'你最想和重要的人一起完成哪件沒做過的事？',meaning:'你感受到愛的方式，是一起打開生活、創造回憶，也在彼此陪伴下長出新的自己。'},
+      {topic:'確定',feeling:'安心',question:'別人持續做什麼，會讓你相信他不會輕易離開？',meaning:'比起一時熱烈，你更重視可預期的行動，以及不需要反覆猜測的選擇。'}
+    ];
+    const storageKey='mbti-feeling-answers-v1';
+    let saved={};
+    try{saved=JSON.parse(localStorage.getItem(storageKey)||'{}')}catch(e){saved={}}
+    let current=0;
+    const board=document.querySelector('#board');
+    const dialog=document.querySelector('#dialog');
+    const answerView=document.querySelector('#answerView');
+    const result=document.querySelector('#result');
+    const answer=document.querySelector('#answer');
+    const reveal=document.querySelector('#reveal');
+
+    items.forEach((item,index)=>{
+      const button=document.createElement('button');
+      button.className='tile'+(item.center?' center':'');
+      button.dataset.no=item.center?'✦':String(index+(index<4?1:0)).padStart(2,'0');
+      button.innerHTML=`<span class="tile-inner"><b>${item.topic}</b></span><small>${item.center?'任選一格':'點擊探索'}</small>`;
+      button.addEventListener('click',()=>item.center?openRandom():openItem(index));
+      board.appendChild(button);
+    });
+    const progress=document.querySelector('#progress');
+    items.filter(x=>!x.center).forEach((_,i)=>{const dot=document.createElement('span');dot.className='dot';dot.dataset.dot=i;progress.appendChild(dot)});
+
+    function openItem(index){
+      current=index;
+      const item=items[index];
+      document.querySelector('#topic').textContent=item.topic;
+      document.querySelector('#question').textContent=item.question;
+      answer.value=saved[item.topic]||'';
+      reveal.disabled=!answer.value.trim();
+      answerView.classList.remove('hide');
+      result.classList.remove('show');
+      dialog.showModal();
+      setTimeout(()=>answer.focus(),120);
+    }
+    function openRandom(){
+      const options=items.map((x,i)=>x.center?null:i).filter(i=>i!==null&&i!==current);
+      openItem(options[Math.floor(Math.random()*options.length)]);
+    }
+    answer.addEventListener('input',()=>reveal.disabled=!answer.value.trim());
+    reveal.addEventListener('click',()=>{
+      const item=items[current];
+      saved[item.topic]=answer.value.trim();
+      localStorage.setItem(storageKey,JSON.stringify(saved));
+      document.querySelector('#feeling').textContent=item.feeling;
+      document.querySelector('#meaning').textContent=item.meaning;
+      answerView.classList.add('hide');
+      result.classList.add('show');
+      updateProgress();
+    });
+    document.querySelector('#next').addEventListener('click',openRandom);
+    document.querySelector('#close').addEventListener('click',()=>dialog.close());
+    dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&dialog.open)dialog.close()});
+    function updateProgress(){
+      const topics=items.filter(x=>!x.center);
+      topics.forEach((item,i)=>progress.children[i].classList.toggle('done',Boolean(saved[item.topic])));
+    }
+    updateProgress();
+  </script>
+</body>
+</html>
